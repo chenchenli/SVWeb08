@@ -1,0 +1,44 @@
+function StopWatch(){
+	var startm = 0;
+	var stopm = 0;
+	var isOn = false;
+	
+	this.start = function(){
+		if(isOn === true) {
+			return;
+		}
+		else {
+			if(stopm === 0) {
+				startm = Date.now();
+			}
+			else {
+				startm = Date.now() - (stopm - startm);
+			}
+			isOn = true;
+		}
+		return;
+	};
+	
+	this.stop = function(){
+		stopm = Date.now();
+		isOn = false;
+		return;
+	};
+	
+	this.reset = function(){
+		startm = 0;
+		stopm = 0;
+		isOn = false;
+		return;
+	};
+	this.log = function(){
+		if(isOn === false) {
+			return stopm - startm;
+		}
+		else {
+			return Date.now() - startm;
+		}
+	};
+	
+}
+var sw = new StopWatch();
